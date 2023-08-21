@@ -9,57 +9,59 @@ import java.util.Scanner;
  */
 public class Task2Star {
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Введите количество слов -> ");
-    int wordsAmount;
-    do {
-      try {
-        wordsAmount = scanner.nextInt();
-        break;
-      } catch (Exception e) {
-        System.out.print("Неправильный ввод. Попробуйте ввести КОЛИЧЕСТВО слов -> ");
-        scanner.nextLine();
+  public static void main(String[] args) {                   // Time: O(n)   Space: O(n)
+    Scanner scanner = new Scanner(System.in);                // O(1)         O(1)
+    System.out.print("Введите количество слов -> ");         // O(1)
+    int wordsAmount;                                         // O(1)         O(1)
+    do {                                                     // O(1)         O(1)
+      try {                                                  // O(1)         O(1)
+        wordsAmount = scanner.nextInt();                     // O(1)         O(1)
+        break;                                               // O(1)         O(1)
+      } catch (Exception e) {                                // O(1)         O(1)
+        System.out.print("Неправильный ввод. "               // O(1)
+            + "Попробуйте ввести КОЛИЧЕСТВО слов -> ");
+        scanner.nextLine();                                  // O(1)         O(1)
       }
-    } while (true);
-    scanner.nextLine();
-    String[] words = new String[wordsAmount];
-    int minLength = Integer.MAX_VALUE;
-    boolean isLengthEqual = true;
-    for (int i = 0; i < wordsAmount; i++) {
-      if (scanner.hasNextLine()) {
-        words[i] = scanner.nextLine();
-        if (containsLetters(words[i])) {
-          int wordLength = words[i].length();
-          minLength = Math.min(minLength, words[i].length());
-          if (wordLength != minLength) {
-            isLengthEqual = false;
+    } while (true);                                          // O(n)         O(1)
+    scanner.nextLine();                                      // O(1)         O(1)
+    String[] words = new String[wordsAmount];                // O(1)         O(1)
+    int minLength = Integer.MAX_VALUE;                       // O(1)         O(1)
+    boolean isLengthEqual = true;                            // O(1)         O(1)
+    for (int i = 0; i < wordsAmount; i++) {                  // O(n)         O(1)
+      if (scanner.hasNextLine()) {                           // O(1)         O(1)
+        words[i] = scanner.nextLine();                       // O(1)         O(1)
+        if (containsLetters(words[i])) {                     // O(1)         O(1)
+          int wordLength = words[i].length();                // O(1)         O(1)
+          minLength = Math.min(minLength, words[i].length());// O(1)         O(1)
+          if (wordLength != minLength) {                     // O(1)         O(1)
+            isLengthEqual = false;                           // O(1)         O(1)
           }
-        } else {
-          System.out.println("Недопустимые символы, попробуйте ещё раз");
-          scanner.nextLine();
-          i--;
+        } else {                                             // O(1)         O(1)
+          System.out.println("Недопустимые символы, "        // O(1)
+              + "попробуйте ещё раз");
+          scanner.nextLine();                                // O(1)         O(1)
+          i--;                                               // O(1)         O(1)
         }
       }
     }
-    StringBuilder res = new StringBuilder();
-    for (String word : words) {
-      if (word.length() == minLength) {
-        res.append(word).append(" ");
+    StringBuilder res = new StringBuilder();                 // O(1)         O(1)
+    for (String word : words) {                              // O(n)         O(1)
+      if (word.length() == minLength) {                      // O(1)         O(1)
+        res.append(word).append(" ");                        // O(n)         O(n)
       }
     }
-    System.out.println(res.toString());
-    if (isLengthEqual) {
-      System.out.println("Все слова одинаковой длины");
+    System.out.println(res.toString());                      // O(1)         O(1)
+    if (isLengthEqual) {                                     // O(1)         O(1)
+      System.out.println("Все слова одинаковой длины");      // O(1)
     }
   }
 
   public static boolean containsLetters(String word) {
-    for (char c : word.toCharArray()) {
-      if (!Character.isLetter(c)) {
-        return false;
+    for (char c : word.toCharArray()) {                      // O(n)         O(1)
+      if (!Character.isLetter(c)) {                          // O(1)         O(1)
+        return false;                                        // O(1)         O(1)
       }
     }
-    return true;
+    return true;                                             // O(1)         O(1)
   }
 }
