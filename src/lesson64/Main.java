@@ -27,20 +27,8 @@ public class Main {
       scanner.nextLine();
     }
 
-//    books.stream()
-//               .sorted(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle))
-//               .forEach(System.out::println);
-//  }
-
-    books.sort(new Comparator<Book>() {
-      @Override
-      public int compare(Book book1, Book book2) {
-        int authorComparison = book1.getAuthor().compareTo(book2.getAuthor());
-        if (authorComparison != 0) {
-          return authorComparison;
-        }
-        return book1.getTitle().compareTo(book2.getTitle());
-      }
-    });
+    books.stream()
+               .sorted(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle))
+               .forEach(System.out::println);
   }
 }
