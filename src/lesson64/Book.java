@@ -1,7 +1,5 @@
 package lesson64;
 
-import java.util.Objects;
-
 public class Book {
 
   private final String author;
@@ -23,31 +21,11 @@ public class Book {
         '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof Book book)) {
-      return false;
-    }
-    return pages == book.pages && author.equals(book.author) && title.equals(book.title);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(author, title, pages);
-  }
-
   public String getAuthor() {
     return author;
   }
 
   public String getTitle() {
     return title;
-  }
-
-  public int getPages() {
-    return pages;
   }
 }
