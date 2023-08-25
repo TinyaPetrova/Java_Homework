@@ -22,28 +22,26 @@ public class Main {
       String author = scanner.nextLine();
       System.out.print("Введите название: ");
       String title = scanner.nextLine();
-      System.out.print("Введите количество страниц: ");
+      System.out.print("Введите кол-во страниц: ");
       int pages = scanner.nextInt();
       scanner.nextLine();
       books.add(new Book(author, title, pages));
     }
 
-    // анонимный компаратор bookComparator
-    Comparator<Book> bookComparator = new Comparator<Book>() {
+    // анонимный компаратор передаем прямо в метод sort()
+    Collections.sort(books, new Comparator<Book>() {
       @Override
       public int compare(Book book1, Book book2) {
-        if (book1.getAuthor().compareTo(book2.getAuthor()) != 0) {
-          return book1.getAuthor().compareTo(book2.getAuthor());
+        int authorComparison = book1.getAuthor().compareTo(book2.getAuthor());
+        if (authorComparison != 0) {
+          return authorComparison;
         }
-        if (book1.getTitle().compareTo(book2.getTitle()) != 0) {
-          return book1.getTitle().compareTo(book2.getTitle());
-        }
-        return Integer.compare(book1.getPages(), book2.getPages());
+        return book1.getTitle().compareTo(book2.getTitle());
       }
-    };
-    Collections.sort(books, bookComparator);
+    });
     for (Book book : books) {
       System.out.println(book);
     }
   }
 }
+
