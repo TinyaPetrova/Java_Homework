@@ -25,12 +25,22 @@ public class Main {
       System.out.print("Введите кол-во страниц: ");
       int pages = scanner.nextInt();
       scanner.nextLine();
-      books.add(new Book(author, title, pages));
     }
 
-    books.stream()
-               .sorted(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle))
-               .forEach(System.out::println);
+//    books.stream()
+//               .sorted(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle))
+//               .forEach(System.out::println);
+//  }
+
+    books.sort(new Comparator<Book>() {
+      @Override
+      public int compare(Book book1, Book book2) {
+        int authorComparison = book1.getAuthor().compareTo(book2.getAuthor());
+        if (authorComparison != 0) {
+          return authorComparison;
+        }
+        return book1.getTitle().compareTo(book2.getTitle());
+      }
+    });
   }
 }
-
