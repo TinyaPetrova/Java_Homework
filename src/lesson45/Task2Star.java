@@ -1,5 +1,9 @@
 package lesson45;
 
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
 /**
  * Даны два списка целых чисел.
  * Посчитайте, сколько чисел содержится одновременно как в первом списке, так и во втором.
@@ -10,4 +14,21 @@ package lesson45;
  */
 public class Task2Star {
 
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int n1 = scanner.nextInt();
+    Set<Integer> set1 = new HashSet<>();
+    for (int i = 0; i < n1; i++) {
+      int num = scanner.nextInt();
+      set1.add(num);
+    }
+    int n2 = scanner.nextInt();
+    Set<Integer> set2 = new HashSet<>();
+    for (int i = 0; i < n2; i++) {
+      int num = scanner.nextInt();
+      set2.add(num);
+    }
+    set1.retainAll(set2);
+    System.out.println("Кол-во общих чисел: " + set1.size());
+  }
 }
