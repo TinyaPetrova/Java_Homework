@@ -17,16 +17,16 @@ public class Task2Star {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     int n1 = scanner.nextInt();
-    Set<Integer> set1 = new HashSet<>();
-    for (int i = 0; i < n1; i++) {
-      int num = scanner.nextInt();
-      set1.add(num);
-    }
     int n2 = scanner.nextInt();
+    Set<Integer> set1 = new HashSet<>();
     Set<Integer> set2 = new HashSet<>();
-    for (int i = 0; i < n2; i++) {
+    for (int i = 0; i < n1 + n2; i++) {
       int num = scanner.nextInt();
-      set2.add(num);
+      if (i < n1) {
+        set1.add(num);
+      } else {
+        set2.add(num);
+      }
     }
     set1.retainAll(set2);
     System.out.println("Кол-во общих чисел: " + set1.size());
