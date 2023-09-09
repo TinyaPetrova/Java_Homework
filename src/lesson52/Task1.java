@@ -1,5 +1,7 @@
 package lesson52;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -53,6 +55,12 @@ public class Task1 {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     List<String> dictionary = new ArrayList<>();
+    BufferedReader reader = new BufferedReader(new FileReader("lesson52/dictionary.txt"));
+    int num = Integer.parseInt(reader.readLine());
+    for (int i = 0; i < num; i++) {
+      String word = reader.readLine();
+      dictionary.add(word);
+    }
     System.out.print("Введите кол-во слов: ");
     int m = scanner.nextInt();
     scanner.nextLine();
