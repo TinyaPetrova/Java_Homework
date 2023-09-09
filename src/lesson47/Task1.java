@@ -1,5 +1,9 @@
 package lesson47;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 public class Task1 {
 
   /**
@@ -26,6 +30,10 @@ public class Task1 {
    * @param args аргументы командной строки
    */
   public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Введите строку текста: ");
+    String input = scanner.nextLine();
+    Map<Character, Integer> charFrequency = new HashMap<>();
 
   }
 }
