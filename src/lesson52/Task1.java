@@ -41,12 +41,13 @@ public class Task1 {
    * исправить несовершенство ранее написанного кода
    */
   public static void writeDictionaryToFile(List<String> dictionary) {
-    BufferedWriter writer = new BufferedWriter(new FileWriter("src/lesson52/dict.txt"))){
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/lesson52/dict.txt"))) {
       for (String entry : dictionary) {
         writer.write(entry);
         writer.newLine();
-        System.err.println("Ошибка при записи в файл: " + e.getMessage());
       }
+    } catch (IOException e) {
+      System.err.println("Ошибка при записи в файл: " + e.getMessage());
     }
   }
 
@@ -61,8 +62,10 @@ public class Task1 {
       String newWord = scanner.nextLine();
       System.out.println("Введите определение: ");
       String newDef = scanner.nextLine();
-      dictionary.add(newWord + newDef);
+      dictionary.add(newWord + ": " + newDef);
     }
+    writeDictionaryToFile(dictionary);
+    System.out.println("\u001B[35mСловарь успешно обновлен!\u001B[0m");
     BufferedReader reader;
     try {
       reader = new BufferedReader(new FileReader("src/lesson52/dict.txt"));
@@ -79,12 +82,15 @@ public class Task1 {
       System.err.println("Ошибка при чтении словаря: " + e.getMessage());
       throw new RuntimeException(e);
     }
-    System.out.print("Введите кол-во слов: ");
-    int m = scanner.nextInt();
-    scanner.nextLine();
-    for (int i = 0; i < m; i++) {
-      System.out.print("Введите слово для поиска: ");
+    boolean continueSearching = true;
+    while (continueSearching) {
+      System.out.print("Введите слово для поиска (для выхода введите 0): ");
       String searchWord = scanner.nextLine().toLowerCase();
+
+      if (searchWord.equals("0")) {
+        continueSearching = false;
+        continue;
+      }
       boolean found = false;
       for (String entry : dictionary) {
         if (entry.toLowerCase().indexOf(searchWord + ":") == 0) {
