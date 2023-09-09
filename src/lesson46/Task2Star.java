@@ -1,8 +1,12 @@
 package lesson46;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Task2Star {
 
@@ -32,6 +36,17 @@ public class Task2Star {
         dictionary.put(lastName, firstName);
       } else {
         System.out.println("\u001B[31mНеправильный формат ввода, запись не добавлена!\u001B[0m");
+      }
+    }
+    Set<String> uniqueNames = new HashSet<>();
+    Iterator<Entry<String, String>> iterator = dictionary.entrySet().iterator();
+    while (iterator.hasNext()) {
+      Map.Entry<String, String> entry = iterator.next();
+      String firstName = entry.getValue();
+      if (uniqueNames.contains(firstName)) {
+        iterator.remove();
+      } else {
+        uniqueNames.add(firstName);
       }
     }
   }
