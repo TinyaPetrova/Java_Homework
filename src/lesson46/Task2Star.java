@@ -18,7 +18,7 @@ public class Task2Star {
    * Удалить людей, имеющих одинаковые имена.
    * Вывести содержимое словаря (после удаления) на экран.
    *
-   * @param args
+   * @param args аргументы командной строки
    */
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
@@ -29,10 +29,10 @@ public class Task2Star {
     for (int i = 0; i < count; i++) {
       System.out.print("Введите фамилию и имя через пробел: ");
       String input = scanner.nextLine();
-      String[] parts = input.split(" ");
-      if (parts.length == 2) {
-        String lastName = parts[0];
-        String firstName = parts[1];
+      int spaceIndex = input.indexOf(' ');
+      if (spaceIndex != -1) {
+        String lastName = input.substring(0, spaceIndex);
+        String firstName = input.substring(spaceIndex + 1);
         dictionary.put(lastName, firstName);
       } else {
         System.out.println("\u001B[31mНеправильный формат ввода, запись не добавлена!\u001B[0m");
@@ -49,9 +49,9 @@ public class Task2Star {
         uniqueNames.add(firstName);
       }
     }
-    System.out.println("Готовый словарь: ");
+    System.out.println("\u001B[35mГотовый справочник:\u001B[0m");
     for (Map.Entry<String, String> entry : dictionary.entrySet()) {
-      System.out.println(entry.getKey() + " - " + entry.getValue());
+      System.out.println(entry.getKey() + " " + entry.getValue());
     }
   }
 }
