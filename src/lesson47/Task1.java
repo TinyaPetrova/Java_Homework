@@ -31,9 +31,16 @@ public class Task1 {
    */
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    System.out.print("Введите строку текста: ");
     String input = scanner.nextLine();
     Map<Character, Integer> charFrequency = new HashMap<>();
-
+    for (char c : input.toCharArray()) {
+      if (Character.isLetterOrDigit(c) || Character.isWhitespace(c)) {
+        char lowercaseChar = Character.toLowerCase(c);
+        charFrequency.put(lowercaseChar, charFrequency.getOrDefault(lowercaseChar, 0) + 1);
+      }
+    }
+    for (Map.Entry<Character, Integer> entry : charFrequency.entrySet()) {
+      System.out.println(entry.getKey() + ": " + entry.getValue());
+    }
   }
 }
