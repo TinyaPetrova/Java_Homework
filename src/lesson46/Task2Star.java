@@ -49,5 +49,9 @@ public class Task2Star {
         uniqueNames.add(firstName);
       }
     }
+    System.out.println("Готовый словарь: ");
+    for (Map.Entry<String, String> entry : dictionary.entrySet()) {
+      System.out.println(entry.getKey() + " - " + entry.getValue());
+    }
   }
 }
