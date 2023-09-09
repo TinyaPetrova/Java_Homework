@@ -1,8 +1,10 @@
 package lesson52;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +39,30 @@ public class Task1 {
    * <p>
    * Пример выходных данных: язык программирования Python Не найдено код, который нужен, чтобы
    * исправить несовершенство ранее написанного кода
-   *
-   * @param args аргументы командной строки
    */
+  public static void writeDictionaryToFile(List<String> dictionary) {
+    BufferedWriter writer = new BufferedWriter(new FileWriter("src/lesson52/dict.txt"))){
+      for (String entry : dictionary) {
+        writer.write(entry);
+        writer.newLine();
+        System.err.println("Ошибка при записи в файл: " + e.getMessage());
+      }
+    }
+  }
+
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     List<String> dictionary = new ArrayList<>();
+    System.out.print("Введите кол-во новых слов: ");
+    int n = scanner.nextInt();
+    scanner.nextLine();
+    for (int i = 0; i < n; i++) {
+      System.out.print("Введите слово: ");
+      String newWord = scanner.nextLine();
+      System.out.println("Введите определение: ");
+      String newDef = scanner.nextLine();
+      dictionary.add(newWord + newDef);
+    }
     BufferedReader reader;
     try {
       reader = new BufferedReader(new FileReader("src/lesson52/dict.txt"));
@@ -68,7 +88,8 @@ public class Task1 {
       boolean found = false;
       for (String entry : dictionary) {
         if (entry.toLowerCase().indexOf(searchWord + ":") == 0) {
-          System.out.println("\u001B[35m" + entry.substring(entry.indexOf(":") + 2) + "\u001B[0m");
+          System.out.println(
+              "\u001B[35m" + entry.substring(entry.indexOf(":") + 2) + "\u001B[0m");
           found = true;
           break;
         }
