@@ -25,4 +25,18 @@ public class Task1Tests {
     assertEquals("A", books[2].getAuthor());
     assertEquals("3", books[2].getTitle());
   }
+
+  @Test
+  public void testBookComparatorWithSameBooks() {
+    Book book1 = new Book("A", "1", 100);
+    Book book2 = new Book("A", "1", 100);
+    Book[] books = {book1, book2};
+    BookComparator bookComparator = new BookComparator();
+    sort(books, bookComparator);
+
+    assertEquals("A", books[0].getAuthor());
+    assertEquals("1", books[0].getTitle());
+    assertEquals("A", books[1].getAuthor());
+    assertEquals("1", books[1].getTitle());
+  }
 }
