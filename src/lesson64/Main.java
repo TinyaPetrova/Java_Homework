@@ -28,7 +28,13 @@ public class Main {
     }
 
     books.stream()
-               .sorted(Comparator.comparing(Book::getAuthor).thenComparing(Book::getTitle))
-               .forEach(System.out::println);
+        .sorted((book1, book2) -> {
+          int authorComparison = book1.getAuthor().compareTo(book2.getAuthor());
+          if (authorComparison != 0) {
+            return authorComparison;
+          }
+          return book1.getTitle().compareTo(book2.getTitle());
+        })
+        .forEach(System.out::println);
   }
 }
