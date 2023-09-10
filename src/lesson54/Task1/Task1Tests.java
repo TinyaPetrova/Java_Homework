@@ -39,4 +39,13 @@ public class Task1Tests {
     assertEquals("A", books[1].getAuthor());
     assertEquals("1", books[1].getTitle());
   }
+
+  @Test
+  public void testBookComparatorWithEmptyArray() {
+    Book[] books = {};
+    BookComparator bookComparator = new BookComparator();
+    sort(books, bookComparator);
+
+    assertEquals(0, books.length);
+  }
 }
